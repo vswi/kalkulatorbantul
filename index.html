@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kalkulator Nilai Gabungan SPMB Bantul 2025</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+      padding: 1rem;
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #b58900;
+      margin-top: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      width: 80%;
+      padding: 10px;
+      font-size: 18px;
+      margin-top: 0.25rem;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      background-color: #fff;
+    }
+
+    input[type="number"]:focus {
+      border-color: #f0ad4e;
+      outline: none;
+      background-color: #fff9c4;
+    }
+
+    .section {
+      background: #fff8dc;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .result {
+      margin-top: 2rem;
+      padding: 1rem;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 10px;
+      background-color: #fffde7;
+      border: 2px solid #f0ad4e;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      background: #f0ad4e;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #ec971f;
+    }
+
+    button.secondary {
+      background-color: #f7f7f7;
+      color: #555;
+    }
+
+    button.secondary:hover {
+      background-color: #ddd;
+    }
+
+    .flash {
+      animation: flashHighlight 1s ease-in-out;
+    }
+
+    @keyframes flashHighlight {
+      0% { background-color: #fff3cd; }
+      50% { background-color: #ffeeba; }
+      100% { background-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Kalkulator SPMB 2025</h1>
+<h2>SMP Negeri Kabupaten Bantul</h2>
+<p><strong>Petunjuk:</strong> Masukkan nilai rapor & nilai ASPD untuk 3 mata pelajaran (Matematika, Bahasa Indonesia, dan IPA/IPAS). Jika ikut Jalur Prestasi, Anda bisa mengisi nilai prestasi (opsional).</p>
+
+<form id="form">
+  <div class="section" id="mapel">
+    <!-- input field generated via JS -->
+  </div>
+
+  <div class="section">
+    <label>Nilai Prestasi (opsional untuk Jalur Prestasi):</label>
+    <input type="number" id="prestasi" min="0" max="100" value="0">
+  </div>
+
+  <button type="button" onclick="hitung()">Hitung Nilai Gabungan</button>
+
+  <div class="result" id="output">Nilai Gabungan akan muncul di sini setelah dihitung.</div>
+</form>
+
+<br>
+<button type="button" class="secondary" onclick="resetForm()">Reset Semua Nilai</button>
+
+
+<script>
+const _0x3d7879=_0x58fd;(function(_0x3ca494,_0x27b771){const _0x27f013=_0x58fd,_0x15f9cb=_0x3ca494();while(!![]){try{const _0xec8a27=parseInt(_0x27f013(0x132))/0x1*(parseInt(_0x27f013(0x12c))/0x2)+parseInt(_0x27f013(0x13e))/0x3+-parseInt(_0x27f013(0x127))/0x4*(parseInt(_0x27f013(0x13f))/0x5)+-parseInt(_0x27f013(0x118))/0x6+-parseInt(_0x27f013(0x11f))/0x7*(-parseInt(_0x27f013(0x11a))/0x8)+parseInt(_0x27f013(0x10f))/0x9*(-parseInt(_0x27f013(0x12f))/0xa)+-parseInt(_0x27f013(0x138))/0xb*(parseInt(_0x27f013(0x128))/0xc);if(_0xec8a27===_0x27b771)break;else _0x15f9cb['push'](_0x15f9cb['shift']());}catch(_0x58d771){_0x15f9cb['push'](_0x15f9cb['shift']());}}}(_0x4d90,0x84c30));const subjects=['Bahasa\x20Indonesia',_0x3d7879(0x13d),_0x3d7879(0x111)],semesters=['Kls\x204\x20SMT\x201',_0x3d7879(0x114),_0x3d7879(0x134),_0x3d7879(0x117),_0x3d7879(0x126)],mapelContainer=document[_0x3d7879(0x130)]('mapel');function _0x4d90(){const _0xc8f9ae=['Kls\x204\x20SMT\x202','Matematika-aspd','forEach','Kls\x205\x20SMT\x202','541998gFKSFc','flash','4672936AoMIVZ',':</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22number\x22\x20id=\x22','</h3>','prestasi','toFixed','7QnhLfk','output','<h3>','\x0a\x20\x20\x20\x20\x20\x20📘\x20Rerata\x20Rapor:<br>\x0a\x20\x20\x20\x20\x20\x20-\x20IPA/IPAS:\x20','input','<br>\x0a\x20\x20\x20\x20\x20\x20-\x20Matematika:\x20','getItem','Kls\x206\x20SMT\x201','4qMDVHV','1273620PeDzWU','div','map','IPAS-aspd','4518iNTYsJ','appendChild','value','10rIcdza','getElementById','Matematika-s','113GhAwlz','<br><br>\x0a\x0a\x20\x20\x20\x20\x20\x20📗\x20Nilai\x20ASPD:<br>\x0a\x20\x20\x20\x20\x20\x20➕\x20Total\x20ASPD:\x20','Kls\x205\x20SMT\x201','<label>Nilai\x20ASPD\x20','IPAS-s','reduce','33AyEvNX','<br>\x0a\x20\x20\x20\x20\x20\x20➕\x20Total\x20Rapor:\x20','Bahasa\x20Indonesia-aspd','\x22\x20min=\x220\x22\x20max=\x22100\x22\x20value=\x22100\x22>\x0a\x20\x20\x20\x20\x20\x20','offsetWidth','Matematika','2939583quoOtZ','2263655BhuBHG','add','innerHTML',':</label>\x0a\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22number\x22\x20id=\x22','<br><br>\x0a\x0a\x20\x20\x20\x20\x20\x20🏅\x20Nilai\x20Prestasi\x20(jika\x20diisi):\x20','</strong><br><br>\x0a\x0a\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20','querySelectorAll','classList','length','3725856QEtMNR','-aspd\x22\x20min=\x220\x22\x20max=\x22100\x22\x20value=\x22100\x22>','IPAS','Nilai\x20Gabungan\x20akan\x20muncul\x20di\x20sini\x20setelah\x20dihitung.','removeItem'];_0x4d90=function(){return _0xc8f9ae;};return _0x4d90();}subjects['forEach'](_0x4749fa=>{const _0x317fe4=_0x3d7879,_0x13f590=document['createElement'](_0x317fe4(0x129));_0x13f590[_0x317fe4(0x141)]=_0x317fe4(0x121)+_0x4749fa+_0x317fe4(0x11c)+semesters[_0x317fe4(0x12a)]((_0x51d987,_0x1fbac0)=>'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<label>'+_0x51d987+_0x317fe4(0x11b)+_0x4749fa+'-s'+_0x1fbac0+_0x317fe4(0x13b))['join']('')+(_0x317fe4(0x135)+_0x4749fa+_0x317fe4(0x142)+_0x4749fa+_0x317fe4(0x110)),mapelContainer[_0x317fe4(0x12d)](_0x13f590);});function _0x58fd(_0x1ab3c9,_0x57fd75){const _0x4d9035=_0x4d90();return _0x58fd=function(_0x58fd8b,_0x13e234){_0x58fd8b=_0x58fd8b-0x10c;let _0x387460=_0x4d9035[_0x58fd8b];return _0x387460;},_0x58fd(_0x1ab3c9,_0x57fd75);}function getValue(_0x170a77){const _0x2dfd8d=_0x3d7879,_0x2cf4ae=parseFloat(document[_0x2dfd8d(0x130)](_0x170a77)['value']);return isNaN(_0x2cf4ae)?0x0:_0x2cf4ae;}function hitung(){const _0x449c35=_0x3d7879,_0x1affb0=semesters['reduce']((_0x54d719,_0x2ccea3,_0x42a95b)=>_0x54d719+getValue(_0x449c35(0x136)+_0x42a95b),0x0)/semesters[_0x449c35(0x10e)],_0x235e0a=semesters[_0x449c35(0x137)]((_0x3ed8e0,_0x11a803,_0x625293)=>_0x3ed8e0+getValue(_0x449c35(0x131)+_0x625293),0x0)/semesters[_0x449c35(0x10e)],_0x574d04=semesters[_0x449c35(0x137)]((_0x477477,_0x5a3545,_0x183984)=>_0x477477+getValue('Bahasa\x20Indonesia-s'+_0x183984),0x0)/semesters[_0x449c35(0x10e)],_0x2e5b35=_0x1affb0+_0x235e0a+_0x574d04,_0x524e77=getValue(_0x449c35(0x12b)),_0x5dc37c=getValue(_0x449c35(0x115)),_0x89acbb=getValue(_0x449c35(0x13a)),_0x38a36c=_0x524e77+_0x5dc37c+_0x89acbb,_0x26313b=getValue(_0x449c35(0x11d))||0x0,_0x43b4e7=_0x38a36c*0.6+_0x2e5b35*0.4+_0x26313b,_0x3a5374=_0x449c35(0x122)+_0x1affb0[_0x449c35(0x11e)](0x2)+_0x449c35(0x124)+_0x235e0a[_0x449c35(0x11e)](0x2)+'<br>\x0a\x20\x20\x20\x20\x20\x20-\x20Bahasa\x20Indonesia:\x20'+_0x574d04['toFixed'](0x2)+_0x449c35(0x139)+_0x2e5b35[_0x449c35(0x11e)](0x2)+_0x449c35(0x133)+_0x38a36c[_0x449c35(0x11e)](0x2)+_0x449c35(0x143)+_0x26313b[_0x449c35(0x11e)](0x2)+'<br><br>\x0a\x0a\x20\x20\x20\x20\x20\x20🎯\x20<strong>Total\x20Nilai\x20Gabungan:\x20'+_0x43b4e7[_0x449c35(0x11e)](0x2)+_0x449c35(0x144),_0x4d44b4=document['getElementById'](_0x449c35(0x120));_0x4d44b4[_0x449c35(0x141)]=_0x3a5374,_0x4d44b4[_0x449c35(0x10d)]['remove']('flash'),void _0x4d44b4[_0x449c35(0x13c)],_0x4d44b4[_0x449c35(0x10d)][_0x449c35(0x140)](_0x449c35(0x119)),saveInputs();}function saveInputs(){const _0x135bc9=_0x3d7879,_0x61114e=document[_0x135bc9(0x10c)](_0x135bc9(0x123));_0x61114e[_0x135bc9(0x116)](_0x7e8562=>{localStorage['setItem'](_0x7e8562['id'],_0x7e8562['value']);});}function loadInputs(){const _0x25a97b=_0x3d7879,_0x4f6abf=document[_0x25a97b(0x10c)](_0x25a97b(0x123));_0x4f6abf['forEach'](_0x385cca=>{const _0x2411b7=_0x25a97b,_0x1d47f7=localStorage[_0x2411b7(0x125)](_0x385cca['id']);if(_0x1d47f7!==null)_0x385cca[_0x2411b7(0x12e)]=_0x1d47f7;});}function resetForm(){const _0xa2339c=_0x3d7879,_0x23f6c7=document['querySelectorAll'](_0xa2339c(0x123));_0x23f6c7['forEach'](_0xb5e9f6=>{const _0x375f3c=_0xa2339c;_0xb5e9f6[_0x375f3c(0x12e)]=0x0,localStorage[_0x375f3c(0x113)](_0xb5e9f6['id']);}),document[_0xa2339c(0x130)](_0xa2339c(0x120))['innerText']=_0xa2339c(0x112);}loadInputs();
+</script>
+
+
+<div style="margin-top: 2em; padding: 1em; background-color: #e6f4ea; border-top: 2px solid #a0c9a5;">
+  <h3>Kontak dan Layanan Informasi</h3>
+  <p><strong>Email:</strong> <a href="mailto:dikpora@bantulkab.go.id">dikpora@bantulkab.go.id</a></p>
+  <p><strong>Hotline SPMB Jenjang TK, SD, SMP:</strong> (0274) 367171</p>
+  <p><strong>Laman:</strong> <a href="https://dikpora.bantulkab.go.id/" target="_blank">https://dikpora.bantulkab.go.id/</a></p>
+  <br>
+  <strong>Waktu Layanan:</strong>
+  <ul style="margin-top: 0;">
+    <li>Senin - Kamis: 08.00 - 15.00 WIB</li>
+    <li>Jumat: 08.00 - 14.00 WIB</li>
+  </ul>
+</div>
+
+
+
+</body>
+</html>
