@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Loading...</title> <!-- akan diganti JS -->
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    ul { list-style-type: none; padding-left: 1em; }
+    li { margin: 4px 0; }
+    .folder { font-weight: bold; color: navy; cursor: pointer; }
+    .file a { text-decoration: none; }
+  </style></head>
+<body>
+
+<h1 id="judul">Loading...</h1> <!-- akan diganti JS -->
+<div id="container"></div>
+
+<script>
+  const owner = 'vswi'; // Ganti dengan GitHub kamu
+  const repo = 'kalkulatorbantul';  // Ganti dengan nama repo kamu
+  const branch = 'main';    // Atau 'master' kalau default-nya itu
+  
+    // Set judul halaman dan heading
+  document.title = `Isi Repo: ${repo}`;
+  document.getElementById('judul').textContent = `📂 Repo Lister : ${repo} of ${owner}`;
+
+  async function loadFolder(path = '', parentElement = null) {
+    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+    const response = await fetch(apiUrl);
+    const items = await response.json();
+
+    const ul = document.createElement('ul');
+    for (const item of items) {
+        
+        const filename = item.name.toLowerCase();
+        const skip = ['bckp', 'tmp', 'backup', 'pass', 'env'].some(kw => filename.includes(kw));
+        if (skip) continue; // lewati file yang mengandung keyword tertentu
+  
+  
+      const li = document.createElement('li');
+      if (item.type === 'dir') {
+        li.innerHTML = `<span class="folder">📁 ${item.name}</span>`;
+        li.querySelector('span').onclick = () => {
+          if (!li.querySelector('ul')) {
+            loadFolder(item.path, li);
+          }
+        };
+      } else {
+        const ext = item.name.split('.').pop().toLowerCase();
+        const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${item.path}`;
+        const githubPagesUrl = `https://${owner}.github.io/${repo}/${item.path}`;
+
+
+        li.className = 'file';
+        if (['jpg', 'jpeg', 'png'].includes(ext)) {
+          li.innerHTML = `<a href="${githubPagesUrl}" target="_blank">🖼️ ${item.name}</a><br><img src="${rawUrl}" style="max-width:100px;">`;
+        } else if (ext === 'pdf') {
+            li.innerHTML = `<a href="${githubPagesUrl}" target="_blank">📄 ${item.name}</a>`;
+        } else {
+          li.innerHTML = `<a href="${githubPagesUrl}" target="_blank">📄 ${item.name}</a>`;
+        }
+      }
+      ul.appendChild(li);
+    }
+    (parentElement || document.getElementById('container')).appendChild(ul);
+  }
+
+  loadFolder();
+</script>
+
+</body>
+</html>
