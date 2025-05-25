@@ -33,7 +33,7 @@
     for (const item of items) {
         
         const filename = item.name.toLowerCase();
-        const skip = ['bckp', 'tmp', 'backup', 'pass', 'env'].some(kw => filename.includes(kw));
+        const skip = ['bckp', 'tmp', 'backup', 'pass', 'env', 'repo'].some(kw => filename.includes(kw));
         if (skip) continue; // lewati file yang mengandung keyword tertentu
   
   
