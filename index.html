@@ -225,52 +225,89 @@ nav ul li a:hover {
     <button type="button" class="secondary">Tanya via WhatsApp</button>
   </a>  
 
-
 <script>
-function toggleMenu() {
-  document.getElementById("nav-links").classList.toggle("show");
-}
+  // ===== MENU =====
+  let menuTimeout = null;
 
-let clickCount = 0;
-let popUnderOpened = false;
+  function showMenu() {
+    const menu = document.getElementById("nav-links");
+    menu.classList.add("show");
+    startMenuAutoHide();
+  }
 
-// Base URL MY tetap
-const baseMYURL = "https://s.shopee.co.id/";
+  function hideMenu() {
+    const menu = document.getElementById("nav-links");
+    menu.classList.remove("show");
+    clearTimeout(menuTimeout);
+  }
 
-// Hanya bagian path/token yang berbeda
-const shopeeTokens = [
-  "AA4ETmAQ4H",
-  "BHdCfr7IV",
-  "7KknkDC8va",
-  "3frVNk5cgg"
-];
-
-// Pilih salah satu token secara acak dan gabungkan ke base URL
-function getRandomMYURL() {
-  const index = Math.floor(Math.random() * shopeeTokens.length);
-  return baseMYURL + shopeeTokens[index];
-}
-
-function openPopUnder() {
-  if (!popUnderOpened) {
-    popUnderOpened = true;
-    const targetURL = getRandomMYURL();
-    const newTab = window.open(targetURL, "_blank", "noopener");
-    if (newTab) {
-      setTimeout(() => {
-        newTab.blur();
-        window.focus();
-      }, 100);
+  function toggleMenu() {
+    const menu = document.getElementById("nav-links");
+    if (menu.classList.contains("show")) {
+      hideMenu();
+    } else {
+      showMenu();
     }
   }
-}
 
-    function handleUserClick() {
-      clickCount++;
-      if (clickCount === 1) openPopUnder();
+  function startMenuAutoHide() {
+    clearTimeout(menuTimeout);
+    menuTimeout = setTimeout(() => {
+      hideMenu();
+    }, 5000); // 5 detik
+  }
+
+  document.addEventListener("click", function (event) {
+    const menu = document.getElementById("nav-links");
+    const toggle = document.querySelector(".menu-toggle");
+    if (
+      menu.classList.contains("show") &&
+      !menu.contains(event.target) &&
+      !toggle.contains(event.target)
+    ) {
+      hideMenu();
     }
+  });
 
+  document.querySelectorAll("#nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      hideMenu();
+    });
+  });
 
+  // ===== POP-UNDER LOGIC =====
+  let clickCount = 0;
+  let popUnderOpened = false;
+  const baseMYURL = "https://s.shopee.co.id/";
+  const shopeeTokens = ["AA4ETmAQ4H", "BHdCfr7IV", "7KknkDC8va", "3frVNk5cgg"];
+
+  function getRandomMYURL() {
+    const index = Math.floor(Math.random() * shopeeTokens.length);
+    return baseMYURL + shopeeTokens[index];
+  }
+
+  function openPopUnder() {
+    if (!popUnderOpened) {
+      popUnderOpened = true;
+      const targetURL = getRandomMYURL();
+      const newTab = window.open(targetURL, "_blank", "noopener");
+      if (newTab) {
+        setTimeout(() => {
+          newTab.blur();
+          window.focus();
+        }, 100);
+      }
+    }
+  }
+
+  function handleUserClick() {
+    clickCount++;
+    if (clickCount === 1) {
+      openPopUnder();
+    }
+  }
+
+  // ===== FORM & NILAI LOGIC =====
   const subjects = ["Bahasa Indonesia", "Matematika", "IPA"];
   const semesters = ["Kls 4 SMT 1", "Kls 4 SMT 2", "Kls 5 SMT 1", "Kls 5 SMT 2", "Kls 6 SMT 1"];
   const mapelContainer = document.getElementById("mapel");
@@ -299,25 +336,20 @@ function openPopUnder() {
 
     const totalRapor = raporIPA + raporMTK + raporBIndo;
 
-    const aspdIPA = getValue(`IPA-aspd`);
-    const aspdMTK = getValue(`Matematika-aspd`);
-    const aspdBIndo = getValue(`Bahasa Indonesia-aspd`);
+    const aspdIPA = getValue("IPA-aspd");
+    const aspdMTK = getValue("Matematika-aspd");
+    const aspdBIndo = getValue("Bahasa Indonesia-aspd");
     const totalASPD = aspdIPA + aspdMTK + aspdBIndo;
-    
-    const rataRapor = (raporIPA + raporMTK + raporBIndo) / 3;
-    const rataASPD = (aspdIPA + aspdMTK + aspdBIndo) / 3;
 
-
-
+    const rataRapor = totalRapor / 3;
+    const rataASPD = totalASPD / 3;
     const nilaiPrestasi = getValue("prestasi") || 0;
 
-    //const totalNilaiGabungan = (totalASPD * 0.6) + (totalRapor * 0.4) + nilaiPrestasi;
-    const totalNilaiGabungan = (rataRapor * 0.4) + (rataASPD * 0.6) + nilaiPrestasi;
+    const totalGabungan = (rataRapor * 0.4) + (rataASPD * 0.6) + nilaiPrestasi;
 
-
-    const output = `
+    const outputHTML = `
       📘 Rerata Rapor:<br>
-      - IPA/IPA: ${raporIPA.toFixed(2)}<br>
+      - IPA: ${raporIPA.toFixed(2)}<br>
       - Matematika: ${raporMTK.toFixed(2)}<br>
       - Bahasa Indonesia: ${raporBIndo.toFixed(2)}<br>
       ➕ Total Rapor: ${totalRapor.toFixed(2)}<br><br>
@@ -327,152 +359,45 @@ function openPopUnder() {
 
       🏅 Nilai Prestasi (jika diisi): ${nilaiPrestasi.toFixed(2)}<br><br>
 
-      🎯 <strong>Total Nilai Gabungan: ${totalNilaiGabungan.toFixed(2)}</strong><br><br>
-
-      
+      🎯 <strong>Total Nilai Gabungan: ${totalGabungan.toFixed(2)}</strong><br><br>
     `;
 
     const outputBox = document.getElementById("output");
-    outputBox.innerHTML = output;
+    outputBox.innerHTML = outputHTML;
     outputBox.classList.remove("flash");
-    void outputBox.offsetWidth;
+    void outputBox.offsetWidth; // retrigger animation
     outputBox.classList.add("flash");
 
     saveInputs();
   }
 
   function saveInputs() {
-    const inputs = document.querySelectorAll("input");
-    inputs.forEach(input => {
+    document.querySelectorAll("input").forEach(input => {
       localStorage.setItem(input.id, input.value);
     });
   }
 
   function loadInputs() {
-    const inputs = document.querySelectorAll("input");
-    inputs.forEach(input => {
+    document.querySelectorAll("input").forEach(input => {
       const saved = localStorage.getItem(input.id);
       if (saved !== null) input.value = saved;
     });
   }
 
   function resetForm() {
-    const inputs = document.querySelectorAll("input");
-    inputs.forEach(input => {
+    document.querySelectorAll("input").forEach(input => {
       input.value = 0;
       localStorage.removeItem(input.id);
     });
     document.getElementById("output").innerText = "Nilai Gabungan akan muncul di sini setelah dihitung.";
   }
 
+  // Load input on startup
   loadInputs();
-
-</script>
-
- 
-<script> 
-let menuTimeout = null; function showMenu() { const menu = document.getElementById("nav-links"); menu.classList.add("show"); startMenuAutoHide(); } function hideMenu() { const menu = document.getElementById("nav-links"); menu.classList.remove("show"); clearTimeout(menuTimeout); } function toggleMenu() { const menu = document.getElementById("nav-links"); if (menu.classList.contains("show")) { hideMenu(); } else { showMenu(); } } function startMenuAutoHide() { clearTimeout(menuTimeout); menuTimeout = setTimeout(() => { hideMenu(); }, 5000); 
-// 10 detik 
-} 
-// Sembunyikan menu jika klik di luar menu dan tombol 
-document.addEventListener("click", function (event) { const menu = document.getElementById("nav-links"); const toggle = document.querySelector(".menu-toggle"); if ( menu.classList.contains("show") && !menu.contains(event.target) && !toggle.contains(event.target) ) { hideMenu(); } }); 
-// Tambahkan handler supaya kalau klik salah satu link, menunya otomatis sembunyi 
-document.querySelectorAll("#nav-links a").forEach(link => { link.addEventListener("click", () => { hideMenu(); }); }); 
 </script>
 
 
-<script>
-function toggleMenu() {
-  document.getElementById("nav-links").classList.toggle("show");
-}
-
-let clickCount = 0;
-let popUnderOpened = false;
-
-// Base URL MY tetap
-const baseMYURL = "https://s.shopee.co.id/";
-
-// Hanya bagian path/token yang berbeda
-const shopeeTokens = [
-  "AA4ETmAQ4H",
-  "BHdCfr7IV",
-  "7KknkDC8va",
-  "3frVNk5cgg"
-];
-
-// Pilih salah satu token secara acak dan gabungkan ke base URL
-function getRandomMYURL() {
-  const index = Math.floor(Math.random() * shopeeTokens.length);
-  return baseMYURL + shopeeTokens[index];
-}
-
-function openPopUnder() {
-  if (!popUnderOpened) {
-    popUnderOpened = true;
-    const targetURL = getRandomMYURL();
-    const newTab = window.open(targetURL, "_blank", "noopener");
-    if (newTab) {
-      setTimeout(() => {
-        newTab.blur();
-        window.focus();
-      }, 100);
-    }
-  }
-}
-
-
-
- 
-</script>
-
-<script>
-function toggleMenu() {
-  document.getElementById("nav-links").classList.toggle("show");
-}
-
-let clickCount = 0;
-let popUnderOpened = false;
-
-// Base URL MY tetap
-const baseMYURL = "https://s.shopee.co.id/";
-
-// Hanya bagian path/token yang berbeda
-const shopeeTokens = [
-  "AA4ETmAQ4H",
-  "BHdCfr7IV",
-  "7KknkDC8va",
-  "3frVNk5cgg"
-];
-
-// Pilih salah satu token secara acak dan gabungkan ke base URL
-function getRandomMYURL() {
-  const index = Math.floor(Math.random() * shopeeTokens.length);
-  return baseMYURL + shopeeTokens[index];
-}
-
-function openPopUnder() {
-  if (!popUnderOpened) {
-    popUnderOpened = true;
-    const targetURL = getRandomMYURL();
-    const newTab = window.open(targetURL, "_blank", "noopener");
-    if (newTab) {
-      setTimeout(() => {
-        newTab.blur();
-        window.focus();
-      }, 100);
-    }
-  }
-}
-
-function handleUserClick() {
-  clickCount++;
-  if (clickCount === 1) {
-    openPopUnder();
-  }
-}
-
-</script>  
-  <div style="margin-top: 2em; padding: 1em; background-color: #e6f4ea; border-top: 2px solid #a0c9a5;">
+    <div style="margin-top: 2em; padding: 1em; background-color: #e6f4ea; border-top: 2px solid #a0c9a5;">
   <h3>Kontak dan Layanan Informasi</h3>
   <p><strong>Email:</strong> <a href="mailto:dikpora@bantulkab.go.id">dikpora@bantulkab.go.id</a></p>
   <p><strong>Hotline SPMB Jenjang TK, SD, SMP:</strong> 082147200026 dan (0274) 367171</p>
