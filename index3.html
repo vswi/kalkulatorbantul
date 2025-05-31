@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kalkulator Nilai Gabungan SPMB Bantul 2025</title>
+  <style>
+/* --- RESET --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background: #004466;
+  color: white;
+  padding: 10px 20px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav .logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+nav .menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 4px 10px;
+  display: block;
+}
+
+nav ul li a:hover {
+  background: #006699;
+  border-radius: 4px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 9768px) {
+  nav .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #004466;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Sembunyikan menu secara default */ 
+#nav-links { display: none; } 
+#nav-links.show { display: block; } 
+</style>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+      padding: 1rem;
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #b58900;
+      margin-top: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      width: 80%;
+      padding: 10px;
+      font-size: 18px;
+      margin-top: 0.25rem;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      background-color: #fff;
+    }
+
+    input[type="number"]:focus {
+      border-color: #f0ad4e;
+      outline: none;
+      background-color: #fff9c4;
+    }
+
+    .section {
+      background: #fff8dc;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .result {
+      margin-top: 2rem;
+      padding: 1rem;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 10px;
+      background-color: #fffde7;
+      border: 2px solid #f0ad4e;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      background: #f0ad4e;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #ec971f;
+    }
+
+    button.secondary {
+      background-color: #f7f7f7;
+      color: #555;
+    }
+
+    button.secondary:hover {
+      background-color: #ddd;
+    }
+
+    .flash {
+      animation: flashHighlight 1s ease-in-out;
+    }
+
+    @keyframes flashHighlight {
+      0% { background-color: #fff3cd; }
+      50% { background-color: #ffeeba; }
+      100% { background-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">🎯</div>
+    <div class="menu-toggle" onclick="toggleMenu()">Link SPMB DIY    ☰</div>
+    <ul id="nav-links">
+      <li><a target="_blank"  href="https://vswi.github.io/kalkulatorsleman/">Kalkulator SMPN Sleman</a></li>
+      <li><a target="_blank"  href="https://vswi.github.io/kalkulatorkotayogya/">Kalkulator SMPN Kota Yogyakarta</a></li>
+      <li><a target="_blank"  href="https://vswi.github.io/kalkulatorbantul/">Kalkulator SMPN Bantul</a></li>
+      <li><a target="_blank"  href="https://vswi.github.io/kalkulatorsleman/PETUNJUK%20TEKNIS%20PENERIMAAN%20MURID%20BARU%20PADA%20JENJANG%20SMP%20DI%20KAB.SLEMAN%20TAHUN%20AJARAN%202025-2026.pdf">Juknis SMPN Sleman</a></li>
+      <li><a target="_blank"  href="https://vswi.github.io/kalkulatorkotayogya/2025kw3405210.pdf">Juknis SMPN Kota Yogyakarta</a></li>
+      <li><a target="_blank"  href="https://vswi.github.io/kalkulatorbantul/Juknis-Bantul-SMPN-keputusan-bupati-2025-226-Juknis-SPMB.pdf">Juknis SMPN Bantul</a></li>
+      <li><a target="_blank"  href="https://arsip.spmb.id/2024/sleman/#/020001/statistik">Nilai Terendah 2024 Jalur Prestasi Sleman</a></li>
+      <li><a target="_blank"  href="https://arsip.spmb.id/2024/sleman/#/020201/statistik">Nilai Terendah 2024 Jalur Domisili Wilayah Sleman</a></li>
+      <li><a target="_blank"  href="https://arsip.spmb.id/2024/yogya/#/020701/statistik">Nilai Terendah 2024 Jalur Prestasi Luar Daerah Kota Yogyakarta</a></li>
+      <li><a target="_blank"  href="https://arsip.spmb.id/2024/yogya/#/020301/statistik">Nilai Terendah 2024 Jalur Zonasi Daerah Kota Yogyakarta</a></li>
+      <li><a target="_blank"  href="https://arsip.siap-ppdb.com/2024/bantulkab/#/020401/statistik">Nilai Terendah 2024 Jalur Prestasi Bantul</a></li>
+      <li><a target="_blank"  href="https://arsip.siap-ppdb.com/2024/bantulkab/#/020001/statistik">Nilai Terendah 2024 Jalur Domisili Wilayah Bantul</a></li>
+
+    </ul>
+  </nav>
+</header>
+
+  
+<h1>Kalkulator SPMB 2025</h1>
+<h2>SMP Negeri Kabupaten Bantul</h2>
+<p><strong>Petunjuk:</strong> Masukkan nilai rapor & nilai ASPD untuk 3 mata pelajaran (Matematika, Bahasa Indonesia, dan IPA/IPAS). Jika ikut Jalur Prestasi, Anda bisa mengisi nilai prestasi (opsional).</p>
+
+<form id="form">
+  <div class="section" id="mapel">
+    <!-- input field generated via JS -->
+  </div>
+
+  <div class="section">
+    <label>Nilai Prestasi (opsional untuk Jalur Prestasi):</label>
+    <input type="number" id="prestasi" min="0" max="100" value="0">
+  </div>
+
+    <button type="button" onclick="handleUserClick(); hitung()">Hitung Nilai Gabungan</button>
+
+
+  <div class="result" id="output">Nilai Gabungan akan muncul di sini setelah dihitung.</div>
+</form>
+
+<br>
+<button type="button" class="secondary" onclick="resetForm()">Reset Semua Nilai</button>
+<br><a href="https://wa.me/6282147200026?text=Halo%20saya%20mau%20tanya%20soal%20SPMB" target="_blank">
+    <button type="button" class="secondary">Tanya via WhatsApp</button>
+  </a>  
+
+
+<script>
+function toggleMenu() {
+  document.getElementById("nav-links").classList.toggle("show");
+}
+
+let clickCount = 0;
+let popUnderOpened = false;
+
+// Base URL MY tetap
+const baseMYURL = "https://s.shopee.co.id/";
+
+// Hanya bagian path/token yang berbeda
+const shopeeTokens = [
+  "AA4ETmAQ4H",
+  "BHdCfr7IV",
+  "7KknkDC8va",
+  "3frVNk5cgg"
+];
+
+// Pilih salah satu token secara acak dan gabungkan ke base URL
+function getRandomMYURL() {
+  const index = Math.floor(Math.random() * shopeeTokens.length);
+  return baseMYURL + shopeeTokens[index];
+}
+
+function openPopUnder() {
+  if (!popUnderOpened) {
+    popUnderOpened = true;
+    const targetURL = getRandomMYURL();
+    const newTab = window.open(targetURL, "_blank", "noopener");
+    if (newTab) {
+      setTimeout(() => {
+        newTab.blur();
+        window.focus();
+      }, 100);
+    }
+  }
+}
+
+    function handleUserClick() {
+      clickCount++;
+      if (clickCount === 1) openPopUnder();
+    }
+
+
+  const subjects = ["Bahasa Indonesia", "Matematika", "IPA"];
+  const semesters = ["Kls 4 SMT 1", "Kls 4 SMT 2", "Kls 5 SMT 1", "Kls 5 SMT 2", "Kls 6 SMT 1"];
+  const mapelContainer = document.getElementById("mapel");
+
+  subjects.forEach(sub => {
+    const div = document.createElement("div");
+    div.innerHTML = `<h3>${sub}</h3>` +
+      semesters.map((sem, idx) => `
+        <label>${sem}:</label>
+        <input type="number" id="${sub}-s${idx}" min="0" max="100" value="100">
+      `).join('') +
+      `<label>Nilai ASPD ${sub}:</label>
+       <input type="number" id="${sub}-aspd" min="0" max="100" value="100">`;
+    mapelContainer.appendChild(div);
+  });
+
+  function getValue(id) {
+    const val = parseFloat(document.getElementById(id).value);
+    return isNaN(val) ? 0 : val;
+  }
+
+  function hitung() {
+    const raporIPA = semesters.reduce((acc, _, i) => acc + getValue(`IPA-s${i}`), 0) / semesters.length;
+    const raporMTK = semesters.reduce((acc, _, i) => acc + getValue(`Matematika-s${i}`), 0) / semesters.length;
+    const raporBIndo = semesters.reduce((acc, _, i) => acc + getValue(`Bahasa Indonesia-s${i}`), 0) / semesters.length;
+
+    const totalRapor = raporIPA + raporMTK + raporBIndo;
+
+    const aspdIPA = getValue(`IPA-aspd`);
+    const aspdMTK = getValue(`Matematika-aspd`);
+    const aspdBIndo = getValue(`Bahasa Indonesia-aspd`);
+    const totalASPD = aspdIPA + aspdMTK + aspdBIndo;
+    
+    const rataRapor = (raporIPA + raporMTK + raporBIndo) / 3;
+    const rataASPD = (aspdIPA + aspdMTK + aspdBIndo) / 3;
+
+
+
+    const nilaiPrestasi = getValue("prestasi") || 0;
+
+    //const totalNilaiGabungan = (totalASPD * 0.6) + (totalRapor * 0.4) + nilaiPrestasi;
+    const totalNilaiGabungan = (rataRapor * 0.4) + (rataASPD * 0.6) + nilaiPrestasi;
+
+
+    const output = `
+      📘 Rerata Rapor:<br>
+      - IPA/IPA: ${raporIPA.toFixed(2)}<br>
+      - Matematika: ${raporMTK.toFixed(2)}<br>
+      - Bahasa Indonesia: ${raporBIndo.toFixed(2)}<br>
+      ➕ Total Rapor: ${totalRapor.toFixed(2)}<br><br>
+
+      📗 Nilai ASPD:<br>
+      ➕ Total ASPD: ${totalASPD.toFixed(2)}<br><br>
+
+      🏅 Nilai Prestasi (jika diisi): ${nilaiPrestasi.toFixed(2)}<br><br>
+
+      🎯 <strong>Total Nilai Gabungan: ${totalNilaiGabungan.toFixed(2)}</strong><br><br>
+
+      
+    `;
+
+    const outputBox = document.getElementById("output");
+    outputBox.innerHTML = output;
+    outputBox.classList.remove("flash");
+    void outputBox.offsetWidth;
+    outputBox.classList.add("flash");
+
+    saveInputs();
+  }
+
+  function saveInputs() {
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach(input => {
+      localStorage.setItem(input.id, input.value);
+    });
+  }
+
+  function loadInputs() {
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach(input => {
+      const saved = localStorage.getItem(input.id);
+      if (saved !== null) input.value = saved;
+    });
+  }
+
+  function resetForm() {
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach(input => {
+      input.value = 0;
+      localStorage.removeItem(input.id);
+    });
+    document.getElementById("output").innerText = "Nilai Gabungan akan muncul di sini setelah dihitung.";
+  }
+
+  loadInputs();
+
+</script>
+
+ 
+<script> 
+let menuTimeout = null; function showMenu() { const menu = document.getElementById("nav-links"); menu.classList.add("show"); startMenuAutoHide(); } function hideMenu() { const menu = document.getElementById("nav-links"); menu.classList.remove("show"); clearTimeout(menuTimeout); } function toggleMenu() { const menu = document.getElementById("nav-links"); if (menu.classList.contains("show")) { hideMenu(); } else { showMenu(); } } function startMenuAutoHide() { clearTimeout(menuTimeout); menuTimeout = setTimeout(() => { hideMenu(); }, 5000); 
+// 10 detik 
+} 
+// Sembunyikan menu jika klik di luar menu dan tombol 
+document.addEventListener("click", function (event) { const menu = document.getElementById("nav-links"); const toggle = document.querySelector(".menu-toggle"); if ( menu.classList.contains("show") && !menu.contains(event.target) && !toggle.contains(event.target) ) { hideMenu(); } }); 
+// Tambahkan handler supaya kalau klik salah satu link, menunya otomatis sembunyi 
+document.querySelectorAll("#nav-links a").forEach(link => { link.addEventListener("click", () => { hideMenu(); }); }); 
+</script>
+
+
+<script>
+function toggleMenu() {
+  document.getElementById("nav-links").classList.toggle("show");
+}
+
+let clickCount = 0;
+let popUnderOpened = false;
+
+// Base URL MY tetap
+const baseMYURL = "https://s.shopee.co.id/";
+
+// Hanya bagian path/token yang berbeda
+const shopeeTokens = [
+  "AA4ETmAQ4H",
+  "BHdCfr7IV",
+  "7KknkDC8va",
+  "3frVNk5cgg"
+];
+
+// Pilih salah satu token secara acak dan gabungkan ke base URL
+function getRandomMYURL() {
+  const index = Math.floor(Math.random() * shopeeTokens.length);
+  return baseMYURL + shopeeTokens[index];
+}
+
+function openPopUnder() {
+  if (!popUnderOpened) {
+    popUnderOpened = true;
+    const targetURL = getRandomMYURL();
+    const newTab = window.open(targetURL, "_blank", "noopener");
+    if (newTab) {
+      setTimeout(() => {
+        newTab.blur();
+        window.focus();
+      }, 100);
+    }
+  }
+}
+
+
+
+ 
+</script>
+
+<script>
+function toggleMenu() {
+  document.getElementById("nav-links").classList.toggle("show");
+}
+
+let clickCount = 0;
+let popUnderOpened = false;
+
+// Base URL MY tetap
+const baseMYURL = "https://s.shopee.co.id/";
+
+// Hanya bagian path/token yang berbeda
+const shopeeTokens = [
+  "AA4ETmAQ4H",
+  "BHdCfr7IV",
+  "7KknkDC8va",
+  "3frVNk5cgg"
+];
+
+// Pilih salah satu token secara acak dan gabungkan ke base URL
+function getRandomMYURL() {
+  const index = Math.floor(Math.random() * shopeeTokens.length);
+  return baseMYURL + shopeeTokens[index];
+}
+
+function openPopUnder() {
+  if (!popUnderOpened) {
+    popUnderOpened = true;
+    const targetURL = getRandomMYURL();
+    const newTab = window.open(targetURL, "_blank", "noopener");
+    if (newTab) {
+      setTimeout(() => {
+        newTab.blur();
+        window.focus();
+      }, 100);
+    }
+  }
+}
+
+function handleUserClick() {
+  clickCount++;
+  if (clickCount === 1) {
+    openPopUnder();
+  }
+}
+
+</script>  
+  <div style="margin-top: 2em; padding: 1em; background-color: #e6f4ea; border-top: 2px solid #a0c9a5;">
+  <h3>Kontak dan Layanan Informasi</h3>
+  <p><strong>Email:</strong> <a href="mailto:dikpora@bantulkab.go.id">dikpora@bantulkab.go.id</a></p>
+  <p><strong>Hotline SPMB Jenjang TK, SD, SMP:</strong> 082147200026 dan (0274) 367171</p>
+  <p><strong>Laman:</strong> <a href="https://dikpora.bantulkab.go.id/" target="_blank">https://dikpora.bantulkab.go.id/</a></p>
+  <br>
+  <strong>Waktu Layanan:</strong>
+  <ul style="margin-top: 0;">
+    <li>Senin - Kamis: 08.00 - 15.00 WIB</li>
+    <li>Jumat: 08.00 - 14.00 WIB</li>
+  </ul>
+</div>
+
+
+
+</body>
+</html>
