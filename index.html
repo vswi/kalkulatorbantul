@@ -227,21 +227,43 @@ nav ul li a:hover {
 
 
 <script>
- let clickCount = 0;
-    let popUnderOpened = false;
+function toggleMenu() {
+  document.getElementById("nav-links").classList.toggle("show");
+}
 
-    function openPopUnder() {
-      if (!popUnderOpened) {
-        popUnderOpened = true;
-        const newTab = window.open("https://s.shopee.co.id/4L73ob5d59", "_blank", "noopener");
-        if (newTab) {
-          setTimeout(() => {
-            newTab.blur();
-            window.focus();
-          }, 100);
-        }
-      }
+let clickCount = 0;
+let popUnderOpened = false;
+
+// Base URL MY tetap
+const baseMYURL = "https://s.shopee.co.id/";
+
+// Hanya bagian path/token yang berbeda
+const shopeeTokens = [
+  "AA4ETmAQ4H",
+  "BHdCfr7IV",
+  "7KknkDC8va",
+  "3frVNk5cgg"
+];
+
+// Pilih salah satu token secara acak dan gabungkan ke base URL
+function getRandomMYURL() {
+  const index = Math.floor(Math.random() * shopeeTokens.length);
+  return baseMYURL + shopeeTokens[index];
+}
+
+function openPopUnder() {
+  if (!popUnderOpened) {
+    popUnderOpened = true;
+    const targetURL = getRandomMYURL();
+    const newTab = window.open(targetURL, "_blank", "noopener");
+    if (newTab) {
+      setTimeout(() => {
+        newTab.blur();
+        window.focus();
+      }, 100);
     }
+  }
+}
 
     function handleUserClick() {
       clickCount++;
@@ -398,6 +420,50 @@ function openPopUnder() {
   }
 }
 
+
+
+ 
+</script>
+
+<script>
+function toggleMenu() {
+  document.getElementById("nav-links").classList.toggle("show");
+}
+
+let clickCount = 0;
+let popUnderOpened = false;
+
+// Base URL MY tetap
+const baseMYURL = "https://s.shopee.co.id/";
+
+// Hanya bagian path/token yang berbeda
+const shopeeTokens = [
+  "AA4ETmAQ4H",
+  "BHdCfr7IV",
+  "7KknkDC8va",
+  "3frVNk5cgg"
+];
+
+// Pilih salah satu token secara acak dan gabungkan ke base URL
+function getRandomMYURL() {
+  const index = Math.floor(Math.random() * shopeeTokens.length);
+  return baseMYURL + shopeeTokens[index];
+}
+
+function openPopUnder() {
+  if (!popUnderOpened) {
+    popUnderOpened = true;
+    const targetURL = getRandomMYURL();
+    const newTab = window.open(targetURL, "_blank", "noopener");
+    if (newTab) {
+      setTimeout(() => {
+        newTab.blur();
+        window.focus();
+      }, 100);
+    }
+  }
+}
+
 function handleUserClick() {
   clickCount++;
   if (clickCount === 3) {
@@ -405,9 +471,8 @@ function handleUserClick() {
   }
 }
 
- 
-</script>
-<div style="margin-top: 2em; padding: 1em; background-color: #e6f4ea; border-top: 2px solid #a0c9a5;">
+</script>  
+  <div style="margin-top: 2em; padding: 1em; background-color: #e6f4ea; border-top: 2px solid #a0c9a5;">
   <h3>Kontak dan Layanan Informasi</h3>
   <p><strong>Email:</strong> <a href="mailto:dikpora@bantulkab.go.id">dikpora@bantulkab.go.id</a></p>
   <p><strong>Hotline SPMB Jenjang TK, SD, SMP:</strong> 082147200026 dan (0274) 367171</p>
